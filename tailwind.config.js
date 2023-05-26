@@ -18,6 +18,8 @@ module.exports = {
       colors: {
         primary: '#3E3636',
         secondary: '#D72323',
+        almostBlack: '#312D2D',
+        primaryLight: '#F5EDED',
       },
       fontFamily: {
         sans: ['var(--font-inter)'],
