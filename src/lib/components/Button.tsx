@@ -23,11 +23,12 @@ const Button: FC<HTMLProps<HTMLButtonElement> & ButtonProps> = ({
   children,
   variant = 'primary',
   buttonSize = 'small',
+  className,
 }) => {
   return (
     <button
       onClick={onClick}
-      className={`text-level-6 font-bold px-[20px] min-w-[100px] rounded-md py-[19px] w-full shadow-sm ${types[variant]} ${sizes[buttonSize]}`}
+      className={`text-level-6 font-bold px-[20px] min-w-[100px] rounded-md py-[19px] w-full shadow-sm ${types[variant]} ${sizes[buttonSize]} ${className}`}
     >
       {children}
     </button>
