@@ -1,34 +1,36 @@
-import { FC, HTMLProps } from 'react';
+import { FC, HTMLProps, ReactNode, createElement } from 'react';
 
-type level = 1 | 2 | 3 | 4 | 5 | 6;
+type Level = 1 | 2 | 3 | 4 | 5 | 6;
+type Weight = 'medium' | 'semibold' | 'bold';
+type Color = 'almostBlack' | 'almostGray';
 
-const Text: FC<HTMLProps<HTMLHeadingElement> & { level: level }> = ({
+const levelClassNames = {
+  1: 'text-level-1',
+  2: 'text-level-2',
+  3: 'text-level-3',
+  4: 'text-level-4',
+  5: 'text-level-5',
+  6: 'text-level-6',
+};
+
+type TextProps = HTMLProps<HTMLHeadingElement> & {
+  level: Level;
+  weight?: Weight;
+  children: ReactNode;
+  color?: Color;
+};
+
+const Text: FC<TextProps> = ({
   children,
   level,
   className,
+  weight = 'semibold',
+  color = 'almostBlack',
 }) => {
-  const levels = [
-    <h1 key={1} className={`text-level-1 font-semibold ${className}`}>
-      {children}
-    </h1>,
-    <h2 key={2} className={`text-level-2 font-bold ${className}`}>
-      {children}
-    </h2>,
-    <h3 key={3} className={`text-level-3 font-bold ${className}`}>
-      {children}
-    </h3>,
-    <p key={4} className={`text-level-4 font-medium ${className}`}>
-      {children}
-    </p>,
-    <p key={5} className={`text-level-5 font-semibold ${className}`}>
-      {children}
-    </p>,
-    <p key={6} className={`text-level-6 font-semibold ${className}`}>
-      {children}
-    </p>,
-  ];
+  const Tag = level <= 3 ? `h${level}` : 'p';
+  const classNames = `${levelClassNames[level]} ${className} font-${weight} text-${color}`;
 
-  return levels[level - 1];
+  return createElement(Tag, { className: classNames }, children);
 };
 
 export default Text;
