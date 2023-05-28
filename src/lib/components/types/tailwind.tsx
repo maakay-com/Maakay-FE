@@ -1,6 +1,12 @@
 export type FontLevel = 1 | 2 | 3 | 4 | 5 | 6;
 export type FontWeight = 'font-medium' | 'font-semibold' | 'font-bold';
-export type TextColor = 'text-almostBlack' | 'text-almostGray';
+export type TextColor =
+  | 'text-almostBlack'
+  | 'text-almostGray'
+  | 'text-primary'
+  | 'text-secondary'
+  | 'text-primaryLight'
+  | 'text-white';
 export const levelClassNames = {
   1: 'text-level-1',
   2: 'text-level-2',
