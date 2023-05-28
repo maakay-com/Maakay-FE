@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import type { FC, HTMLProps } from 'react';
 
 type variant = 'primary' | 'secondary';
@@ -16,6 +17,7 @@ const sizes = {
 type ButtonProps = {
   variant?: variant;
   buttonSize?: size;
+  to?: string | undefined;
 };
 
 const Button: FC<HTMLProps<HTMLButtonElement> & ButtonProps> = ({
@@ -23,13 +25,20 @@ const Button: FC<HTMLProps<HTMLButtonElement> & ButtonProps> = ({
   children,
   variant = 'primary',
   buttonSize = 'small',
+  to = undefined,
   className,
 }) => {
+  const classes = `text-level-6 font-bold px-[20px] min-w-[100px] rounded-md py-[19px] w-full shadow-sm ${types[variant]} ${sizes[buttonSize]} ${className}`;
+
+  if (to !== undefined)
+    return (
+      <Link href={to} className={classes}>
+        {children}
+      </Link>
+    );
+
   return (
-    <button
-      onClick={onClick}
-      className={`text-level-6 font-bold px-[20px] min-w-[100px] rounded-md py-[19px] w-full shadow-sm ${types[variant]} ${sizes[buttonSize]} ${className}`}
-    >
+    <button onClick={onClick} className={classes}>
       {children}
     </button>
   );
