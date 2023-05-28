@@ -10,11 +10,11 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center text-almostBlack">
       <Header />
       <section className="bg-primaryLight flex flex-col p-20 py-[200px] w-full items-center text-center gap-20 relative overflow-x-hidden">
-        <Text level={1} className="z-10" weight={'bold'}>
+        <Text level={1} className="z-10" weight={'font-bold'}>
           Create your crypto profile
         </Text>
         <div className="w-3/5 z-10">
-          <Text level={4} weight={'medium'}>
+          <Text level={4}>
             Login with thenewboston blockchain to build your crypto donation or
             payment profile
           </Text>
@@ -38,8 +38,10 @@ export default function Home() {
         />
       </section>
       <section className="flex flex-col py-[80px] w-full items-center gap-20">
-        <Text level={4}>Popular Profiles</Text>
-        <div className="flex gap-20 justify-between px-[200px]">
+        <Text level={4} weight="font-semibold">
+          Popular Profiles
+        </Text>
+        <div className="flex gap-20 justify-between md:px-20 md:flex-row flex-col">
           <ProfileSectionElement
             src="/dummies/1.png"
             username="franco15"
@@ -76,12 +78,7 @@ const ProfileSectionElement: FC<ProfileSectionElementProps> = ({
     <div className="flex flex-col items-center justify-center gap-4">
       <Avatar src={src} alt={username} width={342} height={344} />
       <Text level={5}>@{username}</Text>
-      <Text
-        level={6}
-        color="almostGray"
-        weight="medium"
-        className="text-center"
-      >
+      <Text level={6} color="text-almostGray" className="text-center">
         {description}
       </Text>
     </div>
