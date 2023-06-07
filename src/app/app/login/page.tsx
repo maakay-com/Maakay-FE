@@ -1,9 +1,13 @@
+'use client'
 import Button from '@/lib/components/Button';
 import Header from '@/lib/components/Header';
 import Logo from '@/lib/components/Logo';
 import Text from '@/lib/components/Text';
+import {useMetaMask} from "metamask-react"
 
 const LoginPage = () => {
+
+  const {status, connect } = useMetaMask()
   return (
     <div className="flex flex-col md:flex-row w-screen md:justify-between min-h-screen h-full">
       <Header className="md:hidden" />
@@ -24,7 +28,13 @@ const LoginPage = () => {
               started
             </Text>
           </div>
-          <Button buttonSize="full">Log In with MetaMask</Button>
+          <Button buttonSize="full" disabled={status !== "notConnected" ? true : false} onClick={connect}>
+            {status === "initializing" && "Loading.."}
+            {status === "notConnected" && "Log In with MetaMask"}
+            {status === "connecting" && "Connecting with MetaMask"}
+            {status === "connected" && "Connected with MetaMask"}
+            {status === "unavailable" && "Metamask is not installed"}
+          </Button>
         </div>
       </div>
     </div>

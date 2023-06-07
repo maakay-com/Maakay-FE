@@ -19,7 +19,7 @@ export default function Home() {
             payment profile
           </Text>
         </div>
-        <Button buttonSize={'medium'} className="z-10" to="/login">
+        <Button buttonSize={'medium'} className="z-10" to="/app/login">
           Create Now
         </Button>
         <Image

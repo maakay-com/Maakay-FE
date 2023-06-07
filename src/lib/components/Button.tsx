@@ -18,6 +18,7 @@ type ButtonProps = {
   variant?: variant;
   buttonSize?: size;
   to?: string | undefined;
+  disabled?: boolean;
 };
 
 const Button: FC<HTMLProps<HTMLButtonElement> & ButtonProps> = ({
@@ -27,8 +28,9 @@ const Button: FC<HTMLProps<HTMLButtonElement> & ButtonProps> = ({
   buttonSize = 'small',
   to = undefined,
   className,
+  disabled = false
 }) => {
-  const classes = `text-level-6 font-bold px-[20px] min-w-[100px] rounded-md py-[19px] w-full shadow-sm ${types[variant]} ${sizes[buttonSize]} ${className}`;
+  const classes = `text-level-6 font-bold px-[20px] min-w-[100px] rounded-md py-[19px] w-full shadow-sm disabled:opacity-80 ${types[variant]} ${sizes[buttonSize]} ${className}`;
 
   if (to !== undefined)
     return (
@@ -38,7 +40,7 @@ const Button: FC<HTMLProps<HTMLButtonElement> & ButtonProps> = ({
     );
 
   return (
-    <button onClick={onClick} className={classes}>
+    <button onClick={onClick} className={classes} disabled={disabled}>
       {children}
     </button>
   );
